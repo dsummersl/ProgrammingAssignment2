@@ -15,8 +15,8 @@
 
 ## Creates a special 'matrix' capable of caching its inverse.
 
-makeCacheMatrix <- function(x = matrix()) {
-    matrixValue <- x
+makeCacheMatrix <- function(m = matrix()) {
+    matrixValue <- m
     inverse <- NULL
     setmatrix <- function(m) {
         matrixValue <<- m
@@ -34,15 +34,15 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Find the inverse of the matrix contained in x, cache it, and return it.
+## Find the inverse of the matrix contained in m, cache it, and return it.
 
-cacheSolve <- function(x, ...) {
-    i <- x$getinverse()
+cacheSolve <- function(m) {
+    i <- m$getinverse()
     if (!is.null(i)) {
         return(i)
     }
-    m <- x$get()
-    i <- solve(m)
-    x$setinverse(i)
+    x <- m$get()
+    i <- solve(x)
+    m$setinverse(i)
     i
 }
